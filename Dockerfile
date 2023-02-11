@@ -1,17 +1,17 @@
-FROM python:3.10
+FROM python:3.8
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONNUNBUFFERED=1
+RUN mkdir /code
 
-WORKDIR /app
+WORKDIR /code
 
-COPY wedev/Pipfile .
-RUN pip install --upgrade pip && pip install -r requirements.txt
-#RUN python -m pip install --upgrade pip
-#RUN pip install pipenv && pipenv shell
+COPY requirements.txt /app/requirements.txt
 
-COPY wedev .
+RUN pip install -r requirements.txt
+
+COPY . /code/
+
+ENV PYTHONNUNBUFFERED 1
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver"]
+CMD python manage.py runserver 0.0.0.0:8000
