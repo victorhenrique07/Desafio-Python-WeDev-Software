@@ -1,5 +1,5 @@
 from django import forms
-from app.models import Curso, Telefone, Informacao
+from app.models import Curso, Telefone, Aluno, Professor
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -12,13 +12,19 @@ class TelefoneForm(forms.Form):
         fields = ['telefone']
         
         
-class InformacoesForm(forms.ModelForm):
+class AlunoForm(forms.ModelForm):
     
     class Meta:
-        model = Informacao
+        model = Aluno
 
         fields = '__all__'
         
+class ProfessorForm(forms.ModelForm):
+    
+    class Meta:
+        model = Professor
+
+        fields = '__all__'
         
 class CursoForm(forms.ModelForm):
     class Meta:

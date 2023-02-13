@@ -2,9 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Informacao(models.Model):
-    aluno = models.BooleanField(default=False)
-    professor = models.BooleanField(default=False)
+class Pessoa(models.Model):
     name = models.CharField(max_length=55, editable=True, blank=False, null=False)
     lastname = models.CharField(max_length=55, editable=True, blank=False, null=False)
     email = models.EmailField(max_length=70, editable=True, blank=False, null=False)
@@ -14,36 +12,25 @@ class Informacao(models.Model):
     username = models.CharField(max_length=20, editable=True, blank=False, null=False)
     password = models.CharField(max_length=26, editable=True, blank=False, null=False)
     
-    def __str__(self):
-        return "%s %s %s %s %s %s %s %s %s" % (
-            self.id,
-            self.aluno,
-            self.professor,
-            self.name,
-            self.lastname,
-            self.email,
-            self.state,
-            self.city,
-            self.address
-        )
+class Aluno(Pessoa):
+    pass
+
+class Professor(Pessoa):
+    pass
 
 
 class Telefone(models.Model):
-    name = models.ForeignKey(Informacao, on_delete=models.CASCADE)
-    telefone = models.CharField(max_length=255, editable=True, blank=False, null=False)
+    professor = models.ForeignKey(Professor, on_delete=models.CASCADE, related_name='telefones', null=True)
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, related_name='telefones', null=True)
+    telefone = models.CharField(max_length=255)
     
-    def __str__(self):
-        return "%s %s" % (self.name, self.telefone)
-
 class Curso(models.Model):
     active = models.BooleanField()
     name = models.CharField(max_length=80, editable=True, blank=False, null=True)
     start_date = models.DateField()
     finish_date = models.DateField()
-    professor = models.ForeignKey(Informacao, on_delete=models.CASCADE, verbose_name="professor do curso")
+    professor = models.ForeignKey(Professor, on_delete=models.CASCADE, verbose_name="professor do curso")
 #
-    
-class AssociacaoUsuariosInforCurso(models.Model):
-    usuario = models.ForeignKey(Informacao, on_delete=models.CASCADE)
+class EntidadeAssociativa(models.Model):
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
-    
