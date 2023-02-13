@@ -20,8 +20,7 @@ class Professor(Pessoa):
 
 
 class Telefone(models.Model):
-    professor = models.ForeignKey(Professor, on_delete=models.CASCADE, related_name='telefones', null=True)
-    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, related_name='telefones', null=True)
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, related_name='TelefoneProfessor', null=True)
     telefone = models.CharField(max_length=255)
     
 class Curso(models.Model):

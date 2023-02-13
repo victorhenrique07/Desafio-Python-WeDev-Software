@@ -26,3 +26,4 @@ class ProfessorAdmin(admin.ModelAdmin):
 admin.site.register(Curso)
 admin.site.register(Professor, ProfessorAdmin)
 admin.site.register(Aluno, AlunoAdmin)
+admin.site.register(Telefone)
