@@ -5,9 +5,9 @@ services:
   db:
     image: postgres:11
     environment:
-      POSTGRES_DB: app_db
-      POSTGRES_USER: app_user
-      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: wedev
+      POSTGRES_USER: rick
+      POSTGRES_PASSWORD: '94082'
   web:
     build: .
     command: python wedev/manage.py runserver 0.0.0.0:8000
