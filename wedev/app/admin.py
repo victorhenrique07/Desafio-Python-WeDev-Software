@@ -1,18 +1,28 @@
 from django.contrib import admin
-from app.models import Informacao, Telefone, Curso, AssociacaoUsuariosInforCurso
+from app.models import Telefone, Curso, Aluno, Professor, EntidadeAssociativa
 
 
 class TelefoneAdmin(admin.TabularInline):
+
     model = Telefone
 
+class EntidadeAdmin(admin.TabularInline):
 
-class InformacaoAdmin(admin.ModelAdmin):
+    model = EntidadeAssociativa
+
+class AlunoAdmin(admin.ModelAdmin):
     
-    inlines = [TelefoneAdmin,]
+    inlines = [TelefoneAdmin, EntidadeAdmin]
+    
+class ProfessorAdmin(admin.ModelAdmin):
+    
+    inlines = [TelefoneAdmin]
+    
+
+
 
 # Register your models here.
 
-admin.site.register(Informacao,InformacaoAdmin)
-admin.site.register(Telefone)
 admin.site.register(Curso)
-admin.site.register(AssociacaoUsuariosInforCurso)
+admin.site.register(Professor, ProfessorAdmin)
+admin.site.register(Aluno, AlunoAdmin)
