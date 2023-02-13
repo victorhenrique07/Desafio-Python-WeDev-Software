@@ -1,19 +1,33 @@
 from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from app.models import Usuario, Curso, Telefone, Aluno
 
-class RegisterStaffForm(forms.Form):
+
+class TelefoneForm(forms.Form):
+
+    class Meta:
+        model = Telefone
+        
+        fields = ['telefone']
+        
+        
+class UsuarioForm(forms.ModelForm):
     
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-        self.helper.add_input(Submit('submit', 'Submit'))
-    
-    name = forms.CharField()
-    lastname = forms.CharField()
-    email = forms.EmailField()
-    state = forms.CharField()
-    city = forms.CharField()
-    address = forms.CharField()
-    phone_number = forms.CharField()
-    
+    class Meta:
+        model = Usuario
+
+        fields = '__all__'
+        
+        
+class CursoForm(forms.ModelForm):
+    class Meta:
+        model = Curso
+        
+        fields = '__all__'
+
+
+class AlunoForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model = Aluno
+        
+        fields = '__all__'
