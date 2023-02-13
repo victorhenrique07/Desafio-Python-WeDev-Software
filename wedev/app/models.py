@@ -49,7 +49,7 @@ class Curso(models.Model):
             self.finish_date,
             self.professor,
         )
-
+        
 class Aluno(models.Model):
     id = models.IntegerField(primary_key=True)
     username = models.CharField(max_length=20, editable=False, blank=False, null=False)
