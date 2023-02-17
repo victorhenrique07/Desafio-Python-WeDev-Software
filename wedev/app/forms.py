@@ -1,33 +1,30 @@
 from django import forms
-from app.models import Curso, Telefone, Aluno, Professor
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from app.models import Curso, Infos, CustomUser
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', 'password')
+        
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = '__all__'
 
 class TelefoneForm(forms.Form):
 
     class Meta:
-        model = Telefone
+        model = Infos
         
         fields = ['telefone']
-        
-        
-class AlunoForm(forms.ModelForm):
-    
-    class Meta:
-        model = Aluno
-
-        fields = '__all__'
-        
-class ProfessorForm(forms.ModelForm):
-    
-    class Meta:
-        model = Professor
-
-        fields = '__all__'
         
 class CursoForm(forms.ModelForm):
     class Meta:
         model = Curso
         
-        fields = '__all__'
+        fields = [
+            'name',
+            'start_date',
+            'finish_date'
+            ]
