@@ -85,7 +85,7 @@ DATABASES = {
         "NAME": "wedev",
         "USER": "rick",
         "PASSWORD": "94082",
-        "HOST": "localhost",
+        "HOST": "db",
         "PORT": "5432",
         "DISABLE_SERVER_SIDE_CURSORS": True
     }
