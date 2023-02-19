@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
@@ -26,6 +26,7 @@ class Curso(models.Model):
     name = models.CharField(max_length=80, editable=True, blank=False, null=True)
     start_date = models.DateField()
     finish_date = models.DateField()
+    professor = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s %s %s %s %s" % (
@@ -38,5 +39,4 @@ class Curso(models.Model):
 
 class Infos(models.Model):
     name = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     telefone = models.CharField(max_length=255)
