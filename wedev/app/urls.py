@@ -6,5 +6,5 @@ urlpatterns = [
     path("user/profile/edit/<int:pk>/", views.updateuser),
     path("user/profile/<str:pk>/", views.viewprofile),
     path("users/alunos", views.viewalunos),
-    path("cursos/", views.viewcursos)
+    path("cursos/", views.viewcursos),
 ]

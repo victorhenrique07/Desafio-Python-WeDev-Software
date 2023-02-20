@@ -8,7 +8,7 @@ from .forms import (
     ProfessorForm,
     TelefoneFormSetAluno,
     TelefoneFormSetProfessor,
-    CursoForm
+    CursoForm,
 )
 from .models import Aluno, Professor, Telefone, Curso, EntidadeAssociativa
 
@@ -67,31 +67,27 @@ def updateuser(request, pk):
             return HttpResponse("ERROR")
             # usuário não é um aluno nem professor
 
-@login_required(login_url="login")        
+
+@login_required(login_url="login")
 def viewprofile(request, pk):
     form = Aluno.objects.get(id=pk)
     enti = EntidadeAssociativa.objects.get(id=pk)
     curso = Curso.objects.get(id=enti.curso_id)
-    context = {
-        'form': form,
-        'curso': curso
-    }
-    return render(request, 'cursos_usuario.html', context)
+    context = {"form": form, "curso": curso}
+    return render(request, "cursos_usuario.html", context)
+
 
 @login_required(login_url="login")
 @permission_required("app.view_aluno")
 def viewalunos(request):
     aluno = Aluno.objects.all()
-    context = {
-        'alunos': aluno
-    }
-    return render(request, 'alunos.html', context)
+    context = {"alunos": aluno}
+    return render(request, "alunos.html", context)
+
 
 @login_required(login_url="login")
 @permission_required("app.view_curso")
 def viewcursos(request):
     curso = Curso.objects.all()
-    context = {
-        'cursos': curso
-    }
-    return render(request, 'cursos.html', context)
+    context = {"cursos": curso}
+    return render(request, "cursos.html", context)

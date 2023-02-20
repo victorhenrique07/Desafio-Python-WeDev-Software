@@ -20,9 +20,16 @@ class Aluno(models.Model):
 
     def __str__(self):
         return "%s %s %s %s %s %s %s" % (
-            self.user, self.name, self.last_name, self.email, self.state, self.city, self.address
-            )
-    
+            self.user,
+            self.name,
+            self.last_name,
+            self.email,
+            self.state,
+            self.city,
+            self.address,
+        )
+
+
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=70, editable=True, blank=True, null=False)
