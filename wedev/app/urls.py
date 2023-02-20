@@ -2,5 +2,7 @@ from django.urls import path, include
 from app import views
 
 urlpatterns = [
-    path("register/", views.register, name="home"),
+    path('<str:pk>/', views.updateuser),
+    path('profile/', views.student_course),
+    path('cursos/', views.teste)
 ]
