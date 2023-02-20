@@ -2,16 +2,21 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
-
-from .forms import (AlunoForm, CursoFormSet, ProfessorForm,
-                    TelefoneFormSetAluno, TelefoneFormSetProfessor)
-from .models import Aluno, Professor, Telefone
+from .forms import (
+    AlunoForm,
+    CursoFormSet,
+    ProfessorForm,
+    TelefoneFormSetAluno,
+    TelefoneFormSetProfessor,
+    CursoForm
+)
+from .models import Aluno, Professor, Telefone, Curso, EntidadeAssociativa
 
 # Create your views here.
 
 
 @login_required(login_url="login")
-@permission_required('app.editar_perfil')
+@permission_required("app.editar_perfil")
 def updateuser(request, pk):
     user = request.user
     try:
@@ -61,3 +66,32 @@ def updateuser(request, pk):
         except Professor.DoesNotExist:
             return HttpResponse("ERROR")
             # usuário não é um aluno nem professor
+
+@login_required(login_url="login")        
+def viewprofile(request, pk):
+    form = Aluno.objects.get(id=pk)
+    enti = EntidadeAssociativa.objects.get(id=pk)
+    curso = Curso.objects.get(id=enti.curso_id)
+    context = {
+        'form': form,
+        'curso': curso
+    }
+    return render(request, 'cursos_usuario.html', context)
+
+@login_required(login_url="login")
+@permission_required("app.view_aluno")
+def viewalunos(request):
+    aluno = Aluno.objects.all()
+    context = {
+        'alunos': aluno
+    }
+    return render(request, 'alunos.html', context)
+
+@login_required(login_url="login")
+@permission_required("app.view_curso")
+def viewcursos(request):
+    curso = Curso.objects.all()
+    context = {
+        'cursos': curso
+    }
+    return render(request, 'cursos.html', context)
