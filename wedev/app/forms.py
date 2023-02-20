@@ -1,6 +1,7 @@
-from app.models import Aluno, Curso, EntidadeAssociativa, Professor, Telefone
 from django import forms
 from django.forms import inlineformset_factory
+
+from app.models import Aluno, Curso, EntidadeAssociativa, Professor, Telefone
 
 
 class AlunoForm(forms.ModelForm):

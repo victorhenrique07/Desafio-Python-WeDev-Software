@@ -1,5 +1,6 @@
-from app.models import Aluno, Curso, EntidadeAssociativa, Professor, Telefone
 from django.contrib import admin
+
+from app.models import Aluno, Curso, EntidadeAssociativa, Professor, Telefone
 
 
 class TelefoneInline(admin.TabularInline):

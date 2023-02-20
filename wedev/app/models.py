@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.apps import AppConfig
 from django.db import models
 
 # Create your models here.
@@ -19,7 +18,11 @@ class Aluno(models.Model):
         verbose_name = "Aluno"
         verbose_name_plural = "Alunos"
 
-
+    def __str__(self):
+        return "%s %s %s %s %s %s %s" % (
+            self.user, self.name, self.last_name, self.email, self.state, self.city, self.address
+            )
+    
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=70, editable=True, blank=True, null=False)
@@ -39,7 +42,7 @@ class Curso(models.Model):
     name = models.CharField(max_length=80, editable=True, blank=False, null=False)
     start_date = models.DateField()
     finish_date = models.DateField()
-    professor = models.OneToOneField(
+    professor = models.ForeignKey(
         Professor, on_delete=models.CASCADE, verbose_name="professor do curso"
     )
 
