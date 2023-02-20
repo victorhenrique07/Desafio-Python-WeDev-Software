@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+    <h4>{{form.user}} </h4>
+    <p>{{form.name}}</p>
+    <p>{{form.last_name}}</p>
+    <p>{{form.email}}</p>
+    <p>{{form.state}}</p>
+    <p>{{form.city}}</p>
+    <p>{{form.address}}</p>
+    <p>{{curso.name}}</p>
+{% endblock %}
