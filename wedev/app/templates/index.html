@@ -2,11 +2,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <form method="POST">
+  <form method="post">
       {% csrf_token %}
-      <h1>{{user.username}}Edit Painel</h1>
+      <h1 style="text-align: center;">{{user.username}} Edit Painel</h1>
       {{form|crispy}}
+      {{telefone|crispy}}
       <input type="submit" value="Submit">
-  </form>  
+    </form>  
 
 {% endblock %}
