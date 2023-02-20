@@ -1,26 +1,27 @@
 from django.contrib import admin
-from app.models import Infos, Curso, CustomUser
+from app.models import Telefone, Curso, Aluno, Professor, EntidadeAssociativa
 from django.contrib.auth.admin import UserAdmin
-from .forms import CustomUserChangeForm, CustomUserCreationForm
+
     
-class InfosAdmin(admin.TabularInline):
-    model = Infos
+class TelefoneInline(admin.TabularInline):
+    model = Telefone
     
-class CustomUserAdmin(UserAdmin):
-    add_form = CustomUserCreationForm
-    form = CustomUserChangeForm
-    model = CustomUser
-    inlines = [InfosAdmin]
-    list_display = ['username', 'email', 'first_name', 'last_name']
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        (None, {'fields': ('email', 'first_name', 'last_name', 'state', 'city', 'address', 'type')}),
-    )
-    fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('state', 'city', 'address')}),
-    )
+class EntidadeInline(admin.TabularInline):
+    model = EntidadeAssociativa
+
+class CursoInline(admin.TabularInline):
+    model = Curso
+    
+class AlunoAdmin(admin.ModelAdmin):
+    inlines = [TelefoneInline, EntidadeInline]
+    
+class ProfessorAdmin(admin.ModelAdmin):
+    inlines = [TelefoneInline]
+    
+#
 
 
 # Register your models here.
 admin.site.register(Curso)
-admin.site.register(Infos)
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Aluno, AlunoAdmin)
+admin.site.register(Professor, ProfessorAdmin)
