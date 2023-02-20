@@ -3,6 +3,7 @@ version: '3.8'
 
 services:
   db:
+    container_name: django-db
     image: postgres
     restart: always
     volumes:
@@ -12,13 +13,14 @@ services:
       POSTGRES_USER: rick
       POSTGRES_PASSWORD: 94082
     ports:
-      - "5432:5432"
+      - 5432:5432
   web:
+    container_name: django
     tty: true
     build: .
     command: bash -c "python wedev/manage.py makemigrations &&
-        python wedev/manage.py migrate &&
-        python wedev/manage.py runserver 0.0.0.0:8000"
+        python wedev/manage.py migrate && 
+        python wedev/manage.py runserver 0.0.0.0:8000" 
     volumes:
       - .:/code
     ports:

@@ -1,4 +1,4 @@
 django
 django-crispy-forms
 psycopg2-binary
-black
+crispy-bootstrap5

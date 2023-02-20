@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = "app.CustomUser"
+#AUTH_USER_MODEL = "app.CustomUser"
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "app.apps.AppConfig",
     "crispy_forms",
+    "crispy_bootstrap5"
 ]
 
 MIDDLEWARE = [
@@ -136,7 +137,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "/app/"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = (
-    "bootstrap", "uni_form", "bootstrap3", "bootstrap4", "gds"
+    "bootstrap", "uni_form", "bootstrap3", "bootstrap5", "gds"
 )
 
-CRISPY_TEMPLATE_PACK = "uni_form"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
