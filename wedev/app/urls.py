@@ -1,8 +1,6 @@
-from django.urls import path, include
 from app import views
+from django.urls import path
 
 urlpatterns = [
-    path('<str:pk>/', views.updateuser),
-    path('profile/', views.student_course),
-    path('cursos/', views.teste)
+    path("user/edit/<str:pk>/", views.updateuser),
 ]

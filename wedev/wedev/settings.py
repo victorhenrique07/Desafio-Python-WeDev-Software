@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-#AUTH_USER_MODEL = "app.CustomUser"
+# AUTH_USER_MODEL = "app.CustomUser"
 
 # Application definition
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "app.apps.AppConfig",
     "crispy_forms",
-    "crispy_bootstrap5"
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -61,7 +61,7 @@ SETTINGS_PATH = os.path.realpath(os.path.dirname(__file__))
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'templates')],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -88,7 +88,7 @@ DATABASES = {
         "PASSWORD": "94082",
         "HOST": "db",
         "PORT": "5432",
-        "DISABLE_SERVER_SIDE_CURSORS": True
+        "DISABLE_SERVER_SIDE_CURSORS": True,
     }
 }
 
@@ -134,10 +134,14 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = "/app/"
+LOGIN_REDIRECT_URL = "/app/user/edit/"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = (
-    "bootstrap", "uni_form", "bootstrap3", "bootstrap5", "gds"
+    "bootstrap",
+    "uni_form",
+    "bootstrap3",
+    "bootstrap5",
+    "gds",
 )
 
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = "bootstrap5"
